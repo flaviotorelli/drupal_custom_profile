@@ -13,7 +13,7 @@
  */
 function custom_install() {
   // Add text formats.
-  $filtered_html_format = array(
+  /*$filtered_html_format = array(
     'format' => 'filtered_html',
     'name' => 'Filtered HTML',
     'weight' => 0,
@@ -41,7 +41,7 @@ function custom_install() {
     ),
   );
   $filtered_html_format = (object) $filtered_html_format;
-  filter_format_save($filtered_html_format);
+  filter_format_save($filtered_html_format);*/
 
   $full_html_format = array(
     'format' => 'full_html',
@@ -69,7 +69,7 @@ function custom_install() {
   filter_format_save($full_html_format);
 
   // Enable some standard blocks.
-  $default_theme = variable_get('theme_default', 'bartik');
+  /*$default_theme = variable_get('theme_default', 'bartik');
   $admin_theme = 'seven';
   $blocks = array(
     array(
@@ -193,11 +193,12 @@ function custom_install() {
       'cache' => -1,
     ),
   );
-  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
+  */
+  /*$query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'cache'));
   foreach ($blocks as $block) {
     $query->values($block);
-  }
-  $query->execute();
+  }*/
+//  $query->execute();
 
   // Insert default pre-defined node types into the database. For a complete
   // list of available node type attributes, refer to the node type API
@@ -212,7 +213,7 @@ function custom_install() {
       'modified' => 1,
       'locked' => 0,
     ),
-    array(
+    /*array(
       'type' => 'article',
       'name' => st('Article'),
       'base' => 'node_content',
@@ -220,7 +221,7 @@ function custom_install() {
       'custom' => 1,
       'modified' => 1,
       'locked' => 0,
-    ),
+    ),*/
   );
 
   foreach ($types as $type) {
@@ -259,7 +260,7 @@ function custom_install() {
 
   // Default "Basic page" to not be promoted and have comments disabled.
   variable_set('node_options_page', array('status'));
-  variable_set('comment_page', COMMENT_NODE_HIDDEN);
+  //variable_set('comment_page', COMMENT_NODE_HIDDEN);
 
   // Don't display date and author information for "Basic page" nodes by default.
   variable_set('node_submitted_page', FALSE);
@@ -274,7 +275,7 @@ function custom_install() {
   variable_set('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL);
 
   // Create a default vocabulary named "Tags", enabled for the 'article' content type.
-  $description = st('Use tags to group articles on similar topics into categories.');
+  /*$description = st('Use tags to group articles on similar topics into categories.');
   $vocabulary = (object) array(
     'name' => st('Tags'),
     'description' => $description,
@@ -320,14 +321,14 @@ function custom_install() {
       ),
     ),
   );
-  field_create_instance($instance);
+  field_create_instance($instance);*/
 
 
   // Create an image field named "Image", enabled for the 'article' content type.
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
   // See http://api.drupal.org/api/function/field_create_field/7
 
-  $field = array(
+  /*$field = array(
     'field_name' => 'field_image',
     'type' => 'image',
     'cardinality' => 1,
@@ -342,12 +343,12 @@ function custom_install() {
       'settings' => array(),
     ),
   );
-  field_create_field($field);
+  field_create_field($field);*/
 
 
   // Many of the following values will be defaulted, they're included here as an illustrative examples.
   // See http://api.drupal.org/api/function/field_create_instance/7
-  $instance = array(
+  /*$instance = array(
     'field_name' => 'field_image',
     'entity_type' => 'node',
     'label' => 'Image',
@@ -389,12 +390,12 @@ function custom_install() {
       ),
     ),
   );
-  field_create_instance($instance);
+  field_create_instance($instance);*/
 
   // Enable default permissions for system roles.
-  $filtered_html_permission = filter_permission_name($filtered_html_format);
-  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
-  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
+  //$filtered_html_permission = filter_permission_name($filtered_html_format);
+  //user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access content', 'access comments', $filtered_html_permission));
+  //user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access content', 'access comments', 'post comments', 'skip comment approval', $filtered_html_permission));
 
   // Create a default role for site administrators, with all available permissions assigned.
   $admin_role = new stdClass();
