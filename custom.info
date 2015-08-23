@@ -1,4 +1,4 @@
-name = Custom
+name = Custom profile pocs
 description = Custom Drupal profile installation.
 version = VERSION
 core = 7.x
